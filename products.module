@@ -1,0 +1,11 @@
+<?php
+
+function products_theme($existing, $type, $theme, $path) {
+    return [
+        'qr_code' => [
+            'variables' => [
+                'items' => []
+            ]
+        ]
+    ];
+}

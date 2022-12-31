@@ -1,0 +1,7 @@
+name: 'products'
+type: module
+description: 'To generate QR code for products link'
+core_version_requirement: ^9
+package: Products
+dependencies:
+  -drupal: block
