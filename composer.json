@@ -1,0 +1,7 @@
+{
+    "name": "qrcode/products",
+    "type": "drupal-module",
+    "require": {
+        "aferrandini/phpqrcode": "^1.0"
+    }
+}
