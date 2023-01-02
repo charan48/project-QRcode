@@ -24,12 +24,12 @@ class QrCodeBlock extends BlockBase {
         global $base_url;
         $node = \Drupal::routeMatch()->getParameter('node');
         $nid = $node->id();
-        $link = $node->field_product_link->uri;
-        $title = $node->field_product_title->value;
+        $link = $node->field_p->uri;
+        $title = $node->field_title->value;
         $title_filter = str_replace(' ','',$title); 
         if(!empty($link)){
-            $image = self::generateQrCodes($link,$title_filter);
-                $image_src = $base_url.'/sites/default/files/images/QrCodes/'.$title_filter.'.png';
+            $image = self::generateQrCodes($link,$title_filter,$base_url);
+                $image_src = $base_url.'/sites/default/files/'.$title_filter.'.png';
         }
         else{
             $image_src = '';
@@ -40,11 +40,11 @@ class QrCodeBlock extends BlockBase {
         ];
     }
 
-    public function generateQrCodes($qr_text,$title) {
+    public function generateQrCodes($qr_text,$title,$base_url) {
         $path = '';
-        $directory = "public://images/QrCodes/";
+        $directory = "public://";
         // deprecated file_prepare_directory($directory, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
-        \Drupal::service('file_system')->prepareDirectory($directory, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
+        \Drupal::service('file_system')->prepareDirectory($directory, \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
         // Name of the generated image.
         $uri = $directory . $title . '.png'; // Generates a png image.
         // deprecated $path = drupal_realpath($uri);
